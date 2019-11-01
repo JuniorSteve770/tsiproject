@@ -22,7 +22,9 @@ class BaseController extends Controller
     	$cathegories = Cathegorie::all();
     	$articles = Article::all();
         $last_articles = Article::where('id', '>=', 0)->orderBy('id', 'desc')->take(1)->get();
-        $most_visited = Article::where('id', '>=', 0)->orderBy('visited', 'desc')->take(1)->get();
+        $lastes_articles = Article::where('id', '>=', 0)->orderBy('id', 'desc')->take(4)->get();
+        $most_visited = Article::where('id', '>=', 0)->orderBy('visited', 'desc')->take(4)->get();
+        
         $decrois = Article::all();
         $tab = [];
         $tabId = [];
@@ -65,7 +67,9 @@ class BaseController extends Controller
                                                 'cathegories', 
                                                 'pined', 
                                                 'most_visited', 
-                                                'last_articles'
+                                                'last_articles',
+                                                'lastes_articles'
+
                                             ]));
     }
 

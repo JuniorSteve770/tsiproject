@@ -7,6 +7,8 @@ use App\Cathegorie;
 use App\Article;
 use App\Tag;
 use App\CathegorieArticle;
+use Illuminate\Support\Facades\Auth;
+use App\Record;
 
 class ArticleController extends Controller
 {
@@ -45,10 +47,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->get('cathegorie'));
+        
+        $firstTag = strlen($request->get('tags'));
+        $tags =  substr($request->get('tags'), 1, ($firstTag-1));
+
        
         $nomphoto = $this->file($request, 'store', null);
-        $tag = explode(";", $request->get('tags'));
+        $tag = explode(",", $tags);
 
         if($request->get('pined') == null) {
             $pined = false;
@@ -126,7 +131,7 @@ class ArticleController extends Controller
                 $tagsInString.= $tags[$i]->tag;
             }
             else {
-                $tagsInString.= ';'.$tags[$i]->tag;
+                $tagsInString.= ','.$tags[$i]->tag;
             }
         }
         
@@ -148,9 +153,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $firstTag = strlen($request->get('tags'));
+        $tags =  substr($request->get('tags'), 1, ($firstTag - 1));
         
-        $tag = explode(";", $request->get('tags'));
+        $tag = explode(",", $tags);
 
         if($request->get('pined') == null) {
             $pined = false;
@@ -186,6 +192,16 @@ class ArticleController extends Controller
         for($i=0;$i < count($tags);$i++){
             Tag::where('article_id', $article->id)->delete();
         }
+        Record::create([
+            'user_id' => Auth::user()->id,
+            'admin' => false,
+            'article' => true,
+            'newsletter' => false,
+            'applicant' => false,
+            'sensNews' => false,
+            'cathegorie' => false,
+            'actions' => 'edit'
+        ]);
 
         for($i=0;$i < count($tag);$i++)
             {
@@ -211,6 +227,16 @@ class ArticleController extends Controller
         for($i=0;$i < count($tags);$i++){
             Tag::where('article_id', $id)->delete();
         }
+        Record::create([
+            'user_id' => Auth::user()->id,
+            'admin' => false,
+            'article' => true,
+            'newsletter' => false,
+            'applicant' => false,
+            'sensNews' => false,
+            'cathegorie' => false,
+            'actions' => 'del'
+        ]);
 
         Article::destroy($id);
         return redirect('/home');

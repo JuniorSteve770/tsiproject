@@ -28,11 +28,13 @@ Route::post('/', 'BaseController@index');
 Route::get('deleteAdmin', 'HomeController@deleteAdmin');
 Route::get('deleteApplicant', 'HomeController@deleteApplicant');
 Route::get('deleteNewsLetter', 'HomeController@deleteNewsLetter');
-Route::get('deleteCat', 'HomeController@deleteCat');
+Route::get('deleteCat', 'HomeController@deleteCat'); 
 Route::get('edit', 'HomeController@editAdmin');
 Route::get('saveAdmin', 'HomeController@saveAdmin');
 Route::get('applicant', 'HomeController@applicantDetail');
 Route::post('applicant', 'HomeController@applicantDetail');
+Route::get('new', 'HomeController@newMed');
+Route::get('getUser', 'HomeController@getUser');
 
 
 Route::get('home', 'HomeController@index');
@@ -60,7 +62,7 @@ Route::get('article', function () {
 });
 
 Route::get('about', function () {
-    return view('page2/about');
+    return view('page2/me');
 });
 
 Route::get('apply', function () {

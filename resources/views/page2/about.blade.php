@@ -7,5 +7,6 @@
 <h4>i'm the about page and inserted just on about page </h4>
 <hr>
     <p>this is the contain and replacement of bar in the main page page</p>
+    <br>
 @endsection
 

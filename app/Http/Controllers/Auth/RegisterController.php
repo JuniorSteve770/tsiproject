@@ -66,13 +66,13 @@ class RegisterController extends Controller
         $write = false;
         $allPrivilege = false;
 
-        if($data['edit'] == 'on'){
+        if(isset($data['edit']) == 'on'){
             $edit = true;
         }
-        if($data['write'] == 'on'){
+        if(isset($data['write']) == 'on'){
             $write = true;
         }
-        if($data['allPrivilege'] == 'on'){
+        if(isset($data['allPrivilege']) == 'on'){
             $allPrivilege = true;
         }
         

@@ -3,7 +3,7 @@
 <hr>
 Content:
  <p>
- {{$article->content}}	
+ {{$article->content}}	to all
  </p>
 @if($article->image != '')
  <img src="/{{$article->image}}" width="100px"; height="100px">

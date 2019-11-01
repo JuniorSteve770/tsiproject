@@ -1,38 +1,103 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+  <style>
+      /* Style the buttons */
+      .card-horizontal {
+          display: flex;
+          flex: 1 1 auto;
+      }
+      #c2 {
+        background:white;
+        float: right
+      }
+/* text area content */
+.shadow-textarea textarea.form-control::placeholder {
+    font-weight: 300;
+}
+.shadow-textarea textarea.form-control {
+     padding-left: 0.8rem;
+     border-radius: 5px;
+}
+
+#c3{
+  width: 100%;
+  padding: 10px 10px;  
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+
+#c4 {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* jumbotron */
+ .jumbotron {
+/* background: url('http://placekitten.com/800/500') no-repeat center center; */
+
+width: 150%;
+
+   margin-bottom:2px;
+   font-size: 21px;
+   font-weight: 200;
+   /* line-height: 2.1428571435; */
+   color: inherit;
+   background-color:#E3F2FD;
+    }
+
+
+    </style>
+
+
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2"> 
             <div class="panel panel-default">
-                <div class="panel-heading">{{ $action }}</div>
-
-                <div class="panel-body">
-                    {{ $action }} articles
-                </div>
-                <div class="panel-body">
+                <div class="panel-heading"><h2 >  {{ $action }} your post articles here </h2></div>
+                  
+               <br><br>
+                <div class="jumbotron">
                 @if(!empty($article)) 
                     <form method="post"  action="{{ route('article.update', $article)}}"  enctype="multipart/form-data">
-                    <input type="hidden" name="_method" value="PUT">
+                    <label for="fname">First Name</label>
+                        <input  id="c3"  name="_method" value="PUT">
+                    
                 @else
                     <form method="post"  action="/article"  enctype="multipart/form-data">
                 @endif
                         {{ csrf_field() }}
                         <div>
-                            <label for="title">Title</label>
-                            <input type="text" name="title" value="{{ !empty($article) ? $article->title : ''}}">
+                            <label for="title"><h4>Title of your Article</h4> </label>
+                            <input id="c3" type="text"placeholder="Write the Title here..." name="title" value="{{ !empty($article) ? $article->title : ''}}">
                         </div>
-                        <div>
-                            <label for="content">Content</label>
-                            <textarea type="texte" name="content">
+                        <br><br>
+                            
+                            <div class="form-group shadow-textarea">
+                               <label for="exampleFormControlTextarea6"><h4>Article description and details</h4></label>
+                               <textarea type="texte" name="content" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5" placeholder="Write something here...">@if(!empty($article))
+                                  {{$article->content}}
+                                @endif</textarea>
+                           </div>
+                                {{-- <textarea placeholder="Describe yourself here..." type="texte" name="content"  >
                                 @if(!empty($article))
                                   {{$article->content}}
                                 @endif
-                            </textarea> 
-                        </div>
-                        <div>
-                            <label for="cathegories">Cathegories</label>
-                            <select name = "cathegorie[]" multiple>
+                            </textarea>  --}}
+                        
+                        <div><br>
+                            <label for="cathegories"><h4>Cathegories</h4> </label>
+                            <br>
+                            <select name = "cathegorie[]" multiple required>
                                 @foreach($cathergories as $cat) 
                                 <option value="{{ $cat->id }}" 
                                     <?php 
@@ -51,7 +116,7 @@
                                 @endforeach;
                             </select>
                         </div>
-
+                    <br><br>
                         <div>
                             @if(!empty($article)) 
                                 @if($article->image != '')
@@ -59,14 +124,15 @@
                                 @else
                                 <p>Not found picture for this post</p>
                                 @endif
-                                <label for="image">Change image</label>
+                                <label for="image"><h4>Change image</h4> </label>
                             @else
-                                <label for="image">Choose image</label>
-                            @endif
+                                <label for="image"><h4>Choose image</h4> </label>
+                            @endif<form class="md-form">
+                    {{-- here --}} 
                             <input type="file" name="image">
                         </div>
-                        <div>
-                            <label for="pined">Pined</label>
+                        <div><br>
+                            <label for="pined"><h4>Pined</h4> </label>
                              @if(!empty($article))
                                 @if($article->pined == '1') 
                                 <input type="checkbox" name="pined" checked>
@@ -77,12 +143,14 @@
                              <input type="checkbox" name="pined">
                              @endif
                         </div>
+                        <br>
                          <div>
-                            <label for="tags">Tags</label>
-                            <input type="text" name="tags" placeholder="Entrez vos tags separer par des vigules" value="{{ !empty($tagsInString) ? $tagsInString : ''}}">
+                            <label for="tags"> <h4>Enter your Tags below here </h4></label>
+                            <input  id="c3" type="text" class="input"  name="tags" data-role="tagsinput"  value="{{ !empty($tagsInString) ? $tagsInString : ''}}">
                         </div>
+                        <br>
                         <div>
-                            <input type="submit" name="Submit">
+                            <input id="c4" type="submit" name="Submit">
                         </div>
 
                         
@@ -93,6 +161,10 @@
     </div>
 </div>
 <script type="text/javascript">
+function onLog() {
+console.log($(".input").tagsinput('items'));
+}
+
     function onDelete(arg, attr) {
 
          $.ajax({

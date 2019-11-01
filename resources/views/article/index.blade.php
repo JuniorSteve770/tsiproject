@@ -1,13 +1,16 @@
 @extends('../layouts.app')
+ {{-- local custom css --}}
+        <link rel="stylesheet" href="/css/costum.css">
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h2>Programs</h2></div>
+    {{-- <div class="row">
+        <div class="col-md-12 col-md-offset-2">
+            <div class="panel panel-default">  --}}
+                <div class="panel-heading"><h2>Programs</h2>
+                </div>
 
-                <div class="panel-body">
+               
                    
                     
                     {{-- &nbsp; &nbsp; &nbsp; &nbsp;<a href="subscribe"> Subscribe</a>
@@ -18,9 +21,33 @@
                     <br>
                       @include('inc.buttons') 
                     <br><br><br><br>
+
+                   {{-- <div class="jumbotron text-center"style=" height: 20%;" id= "jumbotron"> --}}
                     
-                @include('inc.newsletter')
-                    
+                     
+
+                        <section class="home-newsletter">
+                            {{-- <div class="container"> --}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="single">
+                                            <h2>Subscribe to our Newsletter</h2>
+                                            <form  method="POST" class="#">
+                                                {{ csrf_field()}}                      
+                                                
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control" placeholder="Enter your email here" name="email" required >
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-theme" type="submit" value="Subscribe">Subscribe</button>
+                                                     </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{-- </div> --}}
+                        </section>    
+                   
                         {{--Newsletter
                          <form method="POST">
                             {{ csrf_field()}}
@@ -29,22 +56,24 @@
                             <input type="submit" value="Subscribe">
                         </form> --}}
                                        
-                    <hr>
-                    <div>
-                        <h3>Here is listed all our categories of articles</h3>
+                   
+                        {{-- <h3>Here is listed all our categories of articles</h3>
 
                      
                             @foreach($cathegories as $cathegorie)
-                            <input type="checkbox" onclick="onGetCategorie('{{ $cathegorie->id }}')"> {{ $cathegorie->title }}
-                            @endforeach
+                             &nbsp;{{ $cathegorie->title }}&nbsp; 
+                            @endforeach --}}
                      
-                    </div>
-                    <hr>
+                    
+                     {{-- @include('inc.newsletter')        --}}
+                   
 
                     <br>
                     @include('inc.rightab')
+                     
+                    <br>
 
-                    <hr>
+                   
                     @include('inc.pined')  
                     {{-- <div>
                        <h2> 5 last  articles</h2><br>
@@ -98,8 +127,8 @@
                      
                     </div> --}}
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+          {{--  </div>
+         </div>
+    </div>--}}
+</div> 
 @endsection

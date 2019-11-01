@@ -1,6 +1,24 @@
 
-<h3>Detailled informations</h3>
-<ul>
+@extends('../layouts.app')
+<style>
+   .top-left { 
+			top: 0%; 
+			left:25%; 
+		} 
+		
+    .top-right { 
+        top: 0%; 
+        right: 25%; 	
+    }
+</style>
+
+@section('content')
+<div class="container">
+<h3><u>Detailled informations</u> </h3>
+
+<ul class="jumbotron">
+	
+	<h3><u>{{$applicant->firstname}} Informations:</u></h3> &nbsp;&nbsp; 
 	<li>Appelation: {{$applicant->appelation}}</li>
 	<li>firstname: {{$applicant->firstname}}</li>
 	<li>lastname: {{$applicant->lastname}}</li>
@@ -24,12 +42,15 @@
 	<li>motivationLetter: {{$applicant->motivationLetter}}</li>
 	<li>scope1: {{$applicant->scope1}}</li>
 	<li>scope2: {{$applicant->scope2}}</li>
+	
 </ul>
-<form method="post">
-	{{ csrf_field() }}
-	<input type="hidden" name="id" value="{{$applicant->id}}">
-	<input type="submit" name="delete" value="Delete">
-</form>
-
-
+	<form method="post">
+		{{ csrf_field() }}
+		<input type="hidden" name="id" value="{{$applicant->id}}">
+		<div class="position-absolute bottum-right">	
+			<input class="btn btn-danger"  type="submit" name="delete" value="Delete">
+		</div> 	
+	</form>
+</div>
+@endsection
 

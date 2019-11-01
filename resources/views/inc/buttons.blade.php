@@ -4,9 +4,9 @@
 
 	<style type="text/css"> 
 		
-		body { 
-			height: 100px; 
-		} 
+		/* body { 
+			height: 200px; 
+		}  */
 		
 		.top-left { 
 			top: 0%; 
@@ -15,27 +15,24 @@
 		
 		.top-right { 
 			top: 0%; 
-			right: -45%; 	
+			right: 15%; 	
         }
-		.but{
+		/* .but{
 			width:200px;
 			height:60px
 
-		}
-
-		
-		
+		}		 */
 		 
 	</style> 
 </head> 
 
 <body> 
 	
-	<div class="container h-100"> 
-		<div class="position-relative h-100"> 
+	<div class="section "> 
+		<div class="position-relative h-90"> 
 			
 		<div class="position-absolute top-right">			
-		   <a id="but" padding=" 32px" href="bootcamp" class="btn btn-primary btn-lg active" 
+		   <a id="but" padding=" 32px" href="bootcamp" class="btn btn-primary btn-lg " 
 		   role="button" aria-pressed="true"> BOOTCAMP</a>
 		</div>		
 
@@ -45,7 +42,7 @@
                 
 		</div> 
 
-		</div> 
+		{{-- </div>  --}}
 	</div> 
 
 	

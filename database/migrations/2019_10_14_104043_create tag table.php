@@ -11,7 +11,7 @@ class CreateTagTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::create('tags', function (Blueprint $table) {
         $table->increments('id');
